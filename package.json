@@ -1,0 +1,40 @@
+{
+  "name": "cpu-monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server",
+    "dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidchai717/cpu-monitor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidchai717/cpu-monitor/issues"
+  },
+  "homepage": "https://github.com/davidchai717/cpu-monitor#readme",
+  "dependencies": {
+    "chart.js": "^2.9.2",
+    "express": "^4.17.1",
+    "jest": "^24.9.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "webpack": "^4.41.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.6.0",
+    "nodemon": "^1.19.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
