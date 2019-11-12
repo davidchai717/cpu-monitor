@@ -20,7 +20,7 @@ ws.on('connection', (client) => {
   sendLoad(client);
   setInterval(() => {
     sendLoad(client);
-  }, 10000);
+  }, 5000);
 });
 
 ws.on('close', () => {
