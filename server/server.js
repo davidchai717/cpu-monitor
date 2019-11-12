@@ -1,12 +1,32 @@
 const os = require('os');
-const express = require('express');
+const WebSocket = require('ws');
 
-const app = express();
+// Establish WebSocket server
+const ws = new WebSocket.Server({ port: 3000 });
 
-// setInterval(() => {
-//   console.log(os.loadavg()[0]/os.cpus().length);
-// }, 10000);
+// Helper function that stores and sends CPU load
+const sendLoad = (client) => {
+  const time = Date.now();
+  const payload = os.loadavg()[0] / os.cpus().length;
+  client.send(JSON.stringify({
+    time,
+    payload,
+  }));
+};
 
-// console.log(process.env.NODE_ENV);
+// Begin executing sendLoad every 10 secs upon connecting
+ws.on('connection', (client) => {
+  const time = Date.now();
+  const payload = os.loadavg()[0] / os.cpus().length;
+  client.send(JSON.stringify({
+    time,
+    payload,
+  }));
+  setInterval(() => {
+    sendLoad(client);
+  }, 10000);
+});
 
-app.listen(3000);
+ws.on('close', () => {
+  clearInterval(sendLoad);
+});
