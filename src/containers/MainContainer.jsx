@@ -18,7 +18,6 @@ const MainContainer = () => {
   return (
     <div id="main-container">
       <h1>CPU Monitor</h1>
-      {state.loadData.length}
       <Graph />
       {/* StatusContainer */}
     </div>
