@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useStoreContext } from '../store';
 import { insertNewLoad } from '../actions/actionCreators';
-import Graph from '../components/Graph.jsx';
+import CPULoadChart from '../components/CPULoadChart.jsx';
 
 const MainContainer = () => {
-  const { state, dispatch } = useStoreContext();
-  console.log(state);
+  const { dispatch } = useStoreContext();
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:3000');
     ws.addEventListener('open', () => {
@@ -18,7 +17,7 @@ const MainContainer = () => {
   return (
     <div id="main-container">
       <h1>CPU Monitor</h1>
-      <Graph />
+      <CPULoadChart />
       {/* StatusContainer */}
     </div>
   );

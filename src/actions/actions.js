@@ -1,2 +1,3 @@
 export const INSERT_NEW_LOAD = 'INSERT_NEW_LOAD';
 export const TOGGLE_ALERT = 'TOGGLE_ALERT';
+export const INITIATE_CHART = 'INITIATE_CHART';

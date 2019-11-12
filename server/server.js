@@ -8,22 +8,16 @@ const ws = new WebSocket.Server({ port: 3000 });
 const sendLoad = (client) => {
   const timeNow = new Date();
   const time = `${timeNow.getHours()}:${timeNow.getMinutes()}:${timeNow.getSeconds()}`;
-  const payload = os.loadavg()[0] / os.cpus().length;
+  const payload = (os.loadavg()[0] / os.cpus().length).toFixed(2);
   client.send(JSON.stringify({
-    x: time,
-    y: payload,
+    time,
+    payload,
   }));
 };
 
 // Begin executing sendLoad every 10 secs upon connecting
 ws.on('connection', (client) => {
-  const timeNow = new Date();
-  const time = `${timeNow.getHours()}:${timeNow.getMinutes()}:${timeNow.getSeconds()}`;
-  const payload = os.loadavg()[0] / os.cpus().length;
-  client.send(JSON.stringify({
-    x: time,
-    y: payload,
-  }));
+  sendLoad(client);
   setInterval(() => {
     sendLoad(client);
   }, 10000);

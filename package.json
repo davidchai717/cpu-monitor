@@ -21,10 +21,11 @@
   },
   "homepage": "https://github.com/davidchai717/cpu-monitor#readme",
   "dependencies": {
-    "chart.js": "^2.9.2",
+    "chart.js": "^2.3.0",
     "express": "^4.17.1",
     "jest": "^24.9.0",
     "react": "^16.11.0",
+    "react-chartjs-2": "^2.8.0",
     "react-dom": "^16.11.0",
     "webpack": "^4.41.2",
     "ws": "^7.2.0"
