@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStoreContext } from '../store';
-import CPULoadChart from '../components/CPULoadChart.jsx';
-import PopUpAlert from '../components/PopUpAlert.jsx';
-import StatusContainer from '../containers/StatusContainer.jsx';
+import CPULoadChart from '../components/CPULoadChart';
+import PopUpAlert from '../components/PopUpAlert';
+import StatusContainer from './StatusContainer';
 
 const ChartContainer = () => {
   const { state: { showAlert } } = useStoreContext();

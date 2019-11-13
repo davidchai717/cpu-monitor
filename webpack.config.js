@@ -10,14 +10,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-            },
+            // options: {
+            //   presets: ['@babel/preset-env', '@babel/preset-react'],
+            // },
           },
         ],
       },
@@ -27,6 +27,9 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   devServer: {
     port: 8080,

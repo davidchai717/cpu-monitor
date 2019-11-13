@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Store } from '../store';
-import MainContainer from '../containers/MainContainer.jsx';
+import MainContainer from '../containers/MainContainer';
 import { mainReducer, initialState } from '../reducers/mainReducer';
 
 const App = () => {

@@ -4,22 +4,30 @@ import { useStoreContext } from '../store';
 
 let chart;
 
+const tenMinLimit = (arr) => {
+  if (arr.length > 60) {
+    return arr.slice(-60);
+  }
+  return arr;
+};
+
 const CPULoadChart = () => {
   const canvasRef = useRef(null);
   const { state: { loadData, timeStamps } } = useStoreContext();
+  const limitedLoadData = tenMinLimit(loadData);
+  const limitedTimeStamps = tenMinLimit(timeStamps);
   useEffect(() => {
     // Destroy the previous iteration of the chart if exists
-    // TODO: Decide whether to move the chart into the state
     if (chart) {
       chart.destroy();
     }
     chart = new Chart(canvasRef.current, {
       type: 'line',
       data: {
-        labels: timeStamps,
+        labels: limitedTimeStamps,
         datasets: [{
           label: 'CPU Load',
-          data: loadData,
+          data: limitedLoadData,
           fill: false,
           borderColor: 'rgba(0, 0, 0, 0.6)',
         }],
@@ -28,6 +36,7 @@ const CPULoadChart = () => {
         scales: {
           yAxes: [{
             type: 'linear',
+            // y Axis always start at 0, but the end could push past 3 if necessary
             ticks: {
               min: 0,
               suggestedMax: 3,
@@ -41,7 +50,7 @@ const CPULoadChart = () => {
   });
   return (
     <div id="chart-container">
-      <canvas id="cpu-load-chart" ref={canvasRef} height="900" width="800" />
+      <canvas id="cpu-load-chart" ref={canvasRef} height="500" width="800" />
     </div>
   );
 };

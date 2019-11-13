@@ -1,15 +1,13 @@
 import React from 'react';
-import PageToggle from '../components/PageToggle.jsx';
+import PageToggle from '../components/PageToggle';
 
-const HeadContainer = () => {
-  return (
-    <div id="head-container">
-      <div id="title">
-        <h1>CPU Monitor</h1>
-      </div>
-      <PageToggle />
+const HeadContainer = () => (
+  <div id="head-container">
+    <div id="title">
+      <h1>CPU Monitor</h1>
     </div>
-  );
-};
+    <PageToggle />
+  </div>
+);
 
 export default HeadContainer;

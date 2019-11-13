@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useStoreContext } from '../store';
 import { insertNewLoad } from '../actions/actionCreators';
-import ChartContainer from './ChartContainer.jsx';
-import PastAlertContainer from './PastAlertContainer.jsx';
-import HeadContainer from './HeadContainer.jsx';
+import ChartContainer from './ChartContainer';
+import PastAlertContainer from './PastAlertContainer';
+import HeadContainer from './HeadContainer';
 
 const MainContainer = () => {
   const { dispatch } = useStoreContext();

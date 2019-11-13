@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const PastAlertContainer = (props) => {
-  const { alert: { time, isOverloaded } } = props;
-  return (
-    <div className={isOverloaded ? 'warning-past-alert' : 'normal-past-alert'}>
-      <p>{time}</p>
-      <p>{isOverloaded ? 'High CPU usage' : 'CPU load recovered'}</p>
-    </div>
-  );
+const PastAlert = ({ alert: { time, isOverloaded } }) => (
+  <div className={isOverloaded ? 'warning-past-alert' : 'normal-past-alert'}>
+    <p>{time}</p>
+    <p>{isOverloaded ? 'High CPU usage' : 'CPU load recovered'}</p>
+  </div>
+);
+
+PastAlert.propTypes = {
+  alert: PropTypes.shape({ time: PropTypes.string, isOverloaded: PropTypes.bool }).isRequired,
 };
 
-export default PastAlertContainer;
+export default PastAlert;
