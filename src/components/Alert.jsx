@@ -3,11 +3,11 @@ import { useStoreContext } from '../store';
 import { turnOffAlert } from '../actions/actionCreators';
 
 const Alert = () => {
-  const { state: { alertText }, dispatch } = useStoreContext();
+  const { state: { isOverloaded }, dispatch } = useStoreContext();
   return (
     <div id="alert">
       <p>Alert:</p>
-      <p>{alertText}</p>
+      <p>{isOverloaded ? 'High CPU load detected' : 'CPU load back to normal.'}</p>
       <button
         type="submit"
         onClick={() => {
