@@ -4,7 +4,6 @@ import PastAlert from '../components/PastAlert.jsx';
 
 const PastAlertContainer = () => {
   const { state: { pastAlerts } } = useStoreContext();
-  console.log(pastAlerts);
   const pastAlertComps = [];
   for (let i = pastAlerts.length - 1; i >= 0; i -= 1) {
     pastAlertComps.push(<PastAlert

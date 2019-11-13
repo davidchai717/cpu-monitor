@@ -3,8 +3,8 @@ import { useStoreContext } from '../store';
 
 const StatusContainer = () => {
   const { state: { isOverloaded, pastAlerts } } = useStoreContext();
-  const highLoadAlerts = pastAlerts.filter(alert => alert.isOverloaded);
-  const recoveryAlerts = pastAlerts.filter(alert => !alert.isOverloaded);
+  const highLoadAlerts = pastAlerts.filter((alert) => alert.isOverloaded);
+  const recoveryAlerts = pastAlerts.filter((alert) => !alert.isOverloaded);
   return (
     <div id="current-status">
       <h2>
@@ -25,7 +25,7 @@ const StatusContainer = () => {
         </p>
       ) : null}
       <p>
-        <strong>Number of CPU Recoveries: </strong>
+        <strong>Number of CPU Load Recoveries: </strong>
         {recoveryAlerts.length}
       </p>
       {recoveryAlerts.length ? (
