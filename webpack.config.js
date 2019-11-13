@@ -32,6 +32,7 @@ module.exports = {
     port: 8080,
     publicPath: '/dist/',
     contentBase: './public',
+    historyApiFallback: true,
     proxy: {
       '/data': 'http://localhost:3000',
     },

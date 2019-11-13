@@ -9,28 +9,28 @@ const StatusContainer = () => {
     <div id="current-status">
       <h2>
         CPU status:
-        <span id={isOverloaded ? 'alert-status-text' : 'normal-status-text'}>
+        <span id={isOverloaded ? 'warning-status-text' : 'normal-status-text'}>
           {isOverloaded ? ' High Usage' : ' Normal'}
         </span>
       </h2>
-      {/* To modularize this piece to be more DRY */}
+      {/* TODO: To modularize this piece to be more DRY */}
       <p>
-        <strong>Num of High CPU Load Occurances: </strong>
+        <strong>Number of High CPU Load Occurances: </strong>
         {highLoadAlerts.length}
       </p>
       {highLoadAlerts.length ? (
         <p>
-          Last orccured at:
+          Last occured at:
           {highLoadAlerts[highLoadAlerts.length - 1].time}
         </p>
       ) : null}
       <p>
-        <strong>Num of CPU Recoveries: </strong>
+        <strong>Number of CPU Recoveries: </strong>
         {recoveryAlerts.length}
       </p>
       {recoveryAlerts.length ? (
         <p>
-          Last orccured at:
+          Last occured at:
           {recoveryAlerts[recoveryAlerts.length - 1].time}
         </p>
       ) : null}

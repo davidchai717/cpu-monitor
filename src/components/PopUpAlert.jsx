@@ -2,7 +2,7 @@ import React from 'react';
 import { useStoreContext } from '../store';
 import { turnOffAlert } from '../actions/actionCreators';
 
-const Alert = () => {
+const PopUpAlert = () => {
   const { state: { isOverloaded }, dispatch } = useStoreContext();
   return (
     <div id="alert">
@@ -20,4 +20,4 @@ const Alert = () => {
   );
 };
 
-export default Alert;
+export default PopUpAlert;

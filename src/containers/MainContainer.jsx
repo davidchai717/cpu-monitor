@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { useStoreContext } from '../store';
 import { insertNewLoad } from '../actions/actionCreators';
 import ChartContainer from './ChartContainer.jsx';
+import PastAlertContainer from './PastAlertContainer.jsx';
+import HeadContainer from './HeadContainer.jsx';
 
 const MainContainer = () => {
   const { dispatch } = useStoreContext();
@@ -16,8 +19,15 @@ const MainContainer = () => {
   }, []);
   return (
     <div id="main-container">
-      <h1>CPU Monitor</h1>
-      <ChartContainer />
+      <HeadContainer />
+      <Switch>
+        <Route exact path="/">
+          <ChartContainer />
+        </Route>
+        <Route path="/past-alerts">
+          <PastAlertContainer />
+        </Route>
+      </Switch>
     </div>
   );
 };

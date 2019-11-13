@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStoreContext } from '../store';
 import CPULoadChart from '../components/CPULoadChart.jsx';
-import Alert from '../components/Alert.jsx';
+import PopUpAlert from '../components/PopUpAlert.jsx';
 import StatusContainer from '../containers/StatusContainer.jsx';
 
 const ChartContainer = () => {
@@ -9,7 +9,7 @@ const ChartContainer = () => {
   return (
     <div id="chart-container">
       <CPULoadChart />
-      {showAlert ? <Alert /> : null}
+      {showAlert ? <PopUpAlert /> : null}
       <StatusContainer />
     </div>
   );
