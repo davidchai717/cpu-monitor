@@ -8,7 +8,7 @@
     "start": "npm-run-all build server",
     "build": "NODE_ENV=production webpack",
     "server": "NODE_ENV=production node server/server",
-    "dev": "webpack-dev-server & NODE_ENV=development nodemon server/server"
+    "dev": "webpack-dev-server --open & NODE_ENV=development nodemon server/server"
   },
   "repository": {
     "type": "git",
