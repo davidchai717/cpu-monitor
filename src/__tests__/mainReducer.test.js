@@ -2,18 +2,24 @@ import { mainReducer, initialState } from '../reducers/mainReducer';
 import { insertNewLoad, turnOffAlert } from '../actions/actionCreators';
 
 describe('mainReducer alert logic unit tests', () => {
+  let newState;
+  beforeEach(() => {
+    // Make a shallow copy of the state in order to keep the original copy untouched
+    newState = JSON.parse(JSON.stringify(initialState));
+  });
   describe('INSERT_NEW_LOAD', () => {
-    // Keeping track of the state change for the following tests
-    let newState = initialState;
-    it('State should reflect when high CPU load is detected', () => {
-      // Generate 12 mock actions that contain high load data
+    // Helper function to mock adding loads over 2 minutes to state
+    const addRandomLoadstoState = (state, max, min) => {
       const loadActions = [];
       for (let i = 1; i <= 12; i += 1) {
-        const randomizedLoad = Math.random() * (3 - 1) + 1;
+        const randomizedLoad = Math.random() * (max - min) + min;
         loadActions.push(insertNewLoad({ time: 'Placeholder', payload: randomizedLoad }));
       }
       // Process the actions through the reducer
-      newState = loadActions.reduce((state, action) => mainReducer(state, action), newState);
+      return loadActions.reduce((reducedState, action) => mainReducer(reducedState, action), state);
+    };
+    it('State should reflect when high CPU load is detected', () => {
+      newState = addRandomLoadstoState(newState, 3, 1);
       const { showAlert, isOverloaded, pastAlerts } = newState;
       expect(showAlert).toBe(true);
       expect(isOverloaded).toBe(true);
@@ -22,14 +28,8 @@ describe('mainReducer alert logic unit tests', () => {
       expect(pastAlerts[0]).toMatchObject({ isOverloaded: true, time: 'Placeholder' });
     });
     it('State should reflect when CPU load has recovered', () => {
-      // Generate 12 mock actions that contain normal load data
-      const loadActions = [];
-      for (let i = 1; i <= 12; i += 1) {
-        const randomizedLoad = Math.random() * 1;
-        loadActions.push(insertNewLoad({ time: 'Placeholder', payload: randomizedLoad }));
-      }
-      // Process the actions through the reducer
-      newState = loadActions.reduce((state, action) => mainReducer(state, action), newState);
+      newState = addRandomLoadstoState(newState, 3, 1);
+      newState = addRandomLoadstoState(newState, 1, 0);
       const { showAlert, isOverloaded, pastAlerts } = newState;
       expect(showAlert).toBe(true);
       expect(isOverloaded).toBe(false);
@@ -37,13 +37,22 @@ describe('mainReducer alert logic unit tests', () => {
       expect(pastAlerts.length).toBe(2);
       expect(pastAlerts[1]).toMatchObject({ isOverloaded: false, time: 'Placeholder' });
     });
+    it('Flags in the state should not change if CPU load has been normal', () => {
+      newState = addRandomLoadstoState(newState, 1, 0);
+      const { showAlert, isOverloaded, pastAlerts } = newState;
+      expect(showAlert).toBe(false);
+      expect(isOverloaded).toBe(false);
+      expect(pastAlerts.length).toBe(0);
+    });
   });
   describe('TOGGLE_ALERT', () => {
+    afterEach(() => {
+      // Make a shallow copy of the state in order to keep the original copy untouched
+      newState = { ...initialState };
+    });
     it('showAlert should be turned false when turnOffAlert is triggered', () => {
-      // Make a shallow copy of the state in order to mutate the value directly
-      const copyofState = { ...initialState };
-      copyofState.showAlert = true;
-      const newState = mainReducer(copyofState, turnOffAlert());
+      newState.showAlert = true;
+      newState = mainReducer(newState, turnOffAlert());
       expect(newState.showAlert).toBe(false);
     });
   });

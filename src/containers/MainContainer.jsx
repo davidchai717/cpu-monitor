@@ -9,6 +9,7 @@ import HeadContainer from './HeadContainer';
 const MainContainer = () => {
   const { dispatch } = useStoreContext();
   useEffect(() => {
+    // Listens for updates from the WS server
     const ws = new WebSocket('ws://localhost:3000');
     ws.addEventListener('open', () => {
       ws.addEventListener('message', (event) => {

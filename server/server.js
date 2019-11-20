@@ -45,11 +45,11 @@ const sendLoad = (client) => {
 // Begin executing sendLoad every 10 secs upon connecting
 ws.on('connection', (client) => {
   sendLoad(client);
-  setInterval(() => {
+  const dataPersist = setInterval(() => {
     sendLoad(client);
   }, 10000);
-});
-
-ws.on('close', () => {
-  clearInterval(sendLoad);
+  // Clears upon disconnecting
+  client.on('close', () => {
+    clearInterval(dataPersist);
+  });
 });
