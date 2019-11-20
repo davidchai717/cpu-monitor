@@ -4,6 +4,7 @@ import Status from '../components/Status';
 
 const StatusContainer = () => {
   const { state: { isOverloaded, pastAlerts } } = useStoreContext();
+  // Compiles the previous alerts by type
   const highLoadAlerts = pastAlerts.filter((alert) => alert.isOverloaded);
   const recoveryAlerts = pastAlerts.filter((alert) => !alert.isOverloaded);
   return (

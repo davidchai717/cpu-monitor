@@ -17,7 +17,7 @@ class Alert {
 }
 
 export const mainReducer = (state, action) => {
-  const newState = { ...state };
+  const newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case types.INSERT_NEW_LOAD:
       const { time, payload } = action.payload;

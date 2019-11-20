@@ -5,6 +5,7 @@ import MainContainer from '../containers/MainContainer';
 import { mainReducer, initialState } from '../reducers/mainReducer';
 
 const App = () => {
+  // useReducer adds the reducer functionalities to Context store
   const [state, dispatch] = useReducer(mainReducer, initialState);
   return (
     <Store.Provider value={{ state, dispatch }}>

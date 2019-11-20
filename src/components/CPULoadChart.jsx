@@ -4,6 +4,7 @@ import { useStoreContext } from '../store';
 
 let chart;
 
+// Helper function to help limit the window to the last 10 minutes
 const tenMinLimit = (arr) => {
   if (arr.length > 60) {
     return arr.slice(-60);
@@ -49,8 +50,8 @@ const CPULoadChart = () => {
     });
   });
   return (
-    <div id="chart-container">
-      <canvas id="cpu-load-chart" ref={canvasRef} height="500" width="800" />
+    <div id="cpu-chart">
+      <canvas ref={canvasRef} />
     </div>
   );
 };
