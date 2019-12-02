@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "npm-run-all build server",
+    "start": "run-p build run-agent server",
     "build": "NODE_ENV=production webpack",
     "server": "NODE_ENV=production node server/server",
-    "dev": "webpack-dev-server --open & NODE_ENV=development nodemon server/server"
+    "run-agent": "node local-agent/agent",
+    "dev": "nodemon local-agent/agent & webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
