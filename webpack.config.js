@@ -2,24 +2,24 @@ const path = require('path');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: ['ts-loader'],
+      },
+      {
+        enforce: 'pre',
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            // options: {
-            //   presets: ['@babel/preset-env', '@babel/preset-react'],
-            // },
-          },
-        ],
+        use: ['babel-loader', 'source-map-loader'],
       },
       {
         test: /\.s[ac]ss$/i,
@@ -29,7 +29,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   devServer: {
     port: 8080,
@@ -39,5 +39,9 @@ module.exports = {
     proxy: {
       '/data': 'http://localhost:3000',
     },
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
   },
 };
