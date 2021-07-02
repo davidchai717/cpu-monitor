@@ -1,7 +1,20 @@
 /* eslint-disable no-case-declarations */
 import * as types from '../actions/actions';
 
-export const initialState = {
+interface State {
+  loadData: Array<number>;
+  timeStamps: Array<Date>;
+  pastAlerts: Array<Alert>;
+  showAlert: boolean;
+  isOverloaded: boolean;
+}
+
+interface Action {
+  type: string;
+  payload?: any;
+}
+
+export const initialState: State = {
   loadData: [],
   timeStamps: [],
   pastAlerts: [],
@@ -11,15 +24,15 @@ export const initialState = {
 
 class Alert {
   isOverloaded: boolean;
-  time: any;
+  time: Date;
 
-  constructor(isOverloaded, time) {
+  constructor(isOverloaded: boolean, time: Date) {
     this.isOverloaded = isOverloaded;
     this.time = time;
   }
 }
 
-export const mainReducer = (state, action) => {
+export const mainReducer = (state: State, action: Action) => {
   const newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case types.INSERT_NEW_LOAD:
@@ -29,7 +42,7 @@ export const mainReducer = (state, action) => {
       // check the average CPU load over the last 2 minutes
       const { loadData, isOverloaded } = newState;
       if (loadData.length >= 12) {
-        const averageLoad = loadData.slice(-12).reduce((sum, currNum) => sum + currNum) / 12;
+        const averageLoad = loadData.slice(-12).reduce((sum: number, currNum: number) => sum + currNum) / 12;
         if (averageLoad >= 1 && !isOverloaded) {
           // if over 1, throw an alert
           newState.isOverloaded = true;
