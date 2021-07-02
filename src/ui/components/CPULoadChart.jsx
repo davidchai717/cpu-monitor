@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
-import Chart from 'chart.js';
+import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale } from 'chart.js';
 import { useStoreContext } from '../store';
+
+Chart.register(LineController, LineElement, LinearScale, PointElement, CategoryScale);
 
 let chart;
 
@@ -14,7 +16,9 @@ const tenMinLimit = (arr) => {
 
 const CPULoadChart = () => {
   const canvasRef = useRef(null);
-  const { state: { loadData, timeStamps } } = useStoreContext();
+  const {
+    state: { loadData, timeStamps },
+  } = useStoreContext();
   const limitedLoadData = tenMinLimit(loadData);
   const limitedTimeStamps = tenMinLimit(timeStamps);
   useEffect(() => {
@@ -26,23 +30,27 @@ const CPULoadChart = () => {
       type: 'line',
       data: {
         labels: limitedTimeStamps,
-        datasets: [{
-          label: 'CPU Load',
-          data: limitedLoadData,
-          fill: false,
-          borderColor: 'rgba(0, 0, 0, 0.6)',
-        }],
+        datasets: [
+          {
+            label: 'CPU Load',
+            data: limitedLoadData,
+            fill: false,
+            borderColor: 'rgba(0, 0, 0, 0.6)',
+          },
+        ],
       },
       options: {
         scales: {
-          yAxes: [{
-            type: 'linear',
-            // y Axis always start at 0, but the end could push past 3 if necessary
-            ticks: {
-              min: 0,
-              suggestedMax: 3,
+          yAxes: [
+            {
+              type: 'linear',
+              // y Axis always start at 0, but the end could push past 3 if necessary
+              ticks: {
+                min: 0,
+                suggestedMax: 3,
+              },
             },
-          }],
+          ],
         },
         maintainAspectRatio: false,
         animation: false,

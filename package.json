@@ -9,7 +9,8 @@
     "build": "NODE_ENV=production webpack",
     "server": "NODE_ENV=production node server/server",
     "run-agent": "node local-agent/agent",
-    "dev": "nodemon local-agent/agent & webpack-dev-server --open"
+    "dev": "nodemon local-agent/agent & webpack-dev-server --open",
+    "dev:ui": "webpack serve  --mode development --env development"
   },
   "repository": {
     "type": "git",

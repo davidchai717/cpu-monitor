@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Store } from '../store';
-import MainContainer from '../containers/MainContainer';
-import { mainReducer, initialState } from '../reducers/mainReducer';
+import { Store } from './store';
+import MainContainer from './containers/MainContainer';
+import { mainReducer, initialState } from './reducers/mainReducer';
 
 const App = () => {
   // useReducer adds the reducer functionalities to Context store

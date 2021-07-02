@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './src/index.jsx',
+  entry: './src/ui/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -36,12 +36,5 @@ module.exports = {
     publicPath: '/dist/',
     contentBase: './public',
     historyApiFallback: true,
-    proxy: {
-      '/data': 'http://localhost:3000',
-    },
-  },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
   },
 };
