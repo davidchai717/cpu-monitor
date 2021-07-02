@@ -1,5 +1,5 @@
 const os = require('os');
-const WebSocket = require('ws');
+import WebSocket from 'ws';
 
 // Establish WebSocket server
 const ws = new WebSocket.Server({ port: 5000 });
