@@ -10,6 +10,9 @@ export const initialState = {
 };
 
 class Alert {
+  isOverloaded: boolean;
+  time: any;
+
   constructor(isOverloaded, time) {
     this.isOverloaded = isOverloaded;
     this.time = time;
@@ -26,7 +29,7 @@ export const mainReducer = (state, action) => {
       // check the average CPU load over the last 2 minutes
       const { loadData, isOverloaded } = newState;
       if (loadData.length >= 12) {
-        const averageLoad = loadData.slice(-12).reduce((sum, currNum) => (sum + currNum)) / 12;
+        const averageLoad = loadData.slice(-12).reduce((sum, currNum) => sum + currNum) / 12;
         if (averageLoad >= 1 && !isOverloaded) {
           // if over 1, throw an alert
           newState.isOverloaded = true;

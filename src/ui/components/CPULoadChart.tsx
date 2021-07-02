@@ -41,16 +41,12 @@ const CPULoadChart = () => {
       },
       options: {
         scales: {
-          yAxes: [
-            {
-              type: 'linear',
-              // y Axis always start at 0, but the end could push past 3 if necessary
-              ticks: {
-                min: 0,
-                suggestedMax: 3,
-              },
-            },
-          ],
+          y: {
+            type: 'linear',
+            // y Axis always start at 0, but the end could push past 3 if necessary
+            min: 0,
+            suggestedMax: 3,
+          },
         },
         maintainAspectRatio: false,
         animation: false,
