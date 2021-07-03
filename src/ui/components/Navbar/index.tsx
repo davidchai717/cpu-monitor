@@ -1,5 +1,5 @@
 import React from 'react';
-import PageToggle from '../components/PageToggle';
+import PageToggle from './PageToggle';
 
 const HeadContainer = () => (
   <div id="head-container">

@@ -1,13 +1,13 @@
 import React, { useRef, useEffect } from 'react';
-import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale } from 'chart.js';
-import { useStoreContext } from '../store';
+import { Chart, ChartDatasetProperties, LineController, LineElement, PointElement, LinearScale, CategoryScale } from 'chart.js';
+import { useStoreContext } from '../../store';
 
 Chart.register(LineController, LineElement, LinearScale, PointElement, CategoryScale);
 
-let chart;
+let chart: Chart;
 
 // Helper function to help limit the window to the last 10 minutes
-const tenMinLimit = (arr) => {
+const tenMinLimit = (arr: Array<any>) => {
   if (arr.length > 60) {
     return arr.slice(-60);
   }

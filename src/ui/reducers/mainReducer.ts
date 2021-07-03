@@ -1,18 +1,6 @@
 /* eslint-disable no-case-declarations */
-import * as types from '../actions/actions';
-
-interface State {
-  loadData: Array<number>;
-  timeStamps: Array<Date>;
-  pastAlerts: Array<Alert>;
-  showAlert: boolean;
-  isOverloaded: boolean;
-}
-
-interface Action {
-  type: string;
-  payload?: any;
-}
+import * as actionTypes from '../actions/actions';
+import { State, Action, AlertInterface } from '../types';
 
 export const initialState: State = {
   loadData: [],
@@ -22,9 +10,9 @@ export const initialState: State = {
   isOverloaded: false,
 };
 
-class Alert {
-  isOverloaded: boolean;
-  time: Date;
+class Alert implements AlertInterface {
+  isOverloaded;
+  time;
 
   constructor(isOverloaded: boolean, time: Date) {
     this.isOverloaded = isOverloaded;
@@ -32,10 +20,10 @@ class Alert {
   }
 }
 
-export const mainReducer = (state: State, action: Action) => {
+export const mainReducer = (state: State, action: Action): State => {
   const newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
-    case types.INSERT_NEW_LOAD:
+    case actionTypes.INSERT_NEW_LOAD:
       const { time, payload } = action.payload;
       newState.timeStamps.push(time);
       newState.loadData.push(Number(payload));
@@ -56,7 +44,7 @@ export const mainReducer = (state: State, action: Action) => {
         }
       }
       return newState;
-    case types.TOGGLE_ALERT:
+    case actionTypes.TOGGLE_ALERT:
       newState.showAlert = action.payload;
       return newState;
     default:
