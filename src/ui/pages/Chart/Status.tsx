@@ -1,12 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { AlertInterface } from '../../types';
 
-const Status = ({ alertArr, label }) => (
+interface props {
+  alertArr: AlertInterface[];
+  label: string;
+}
+
+const Status = ({ alertArr, label }: props) => (
   <div className="status">
     <p>
-      <strong>
-        {`${label}: `}
-      </strong>
+      <strong>{`${label}: `}</strong>
       {alertArr.length}
     </p>
     {alertArr.length ? (
@@ -17,10 +20,5 @@ const Status = ({ alertArr, label }) => (
     ) : null}
   </div>
 );
-
-Status.propTypes = {
-  alertArr: PropTypes.arrayOf(PropTypes.object).isRequired,
-  label: PropTypes.string.isRequired,
-};
 
 export default Status;
