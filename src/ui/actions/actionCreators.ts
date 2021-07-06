@@ -1,6 +1,6 @@
 import * as types from './actions';
 
-export const insertNewLoad = (payload) => ({
+export const insertNewLoad = (payload: any) => ({
   type: types.INSERT_NEW_LOAD,
   payload,
 });

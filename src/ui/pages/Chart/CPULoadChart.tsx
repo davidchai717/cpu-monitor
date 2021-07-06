@@ -1,11 +1,13 @@
 import React, { useRef, useEffect } from 'react';
-import Chart from 'chart.js';
-import { useStoreContext } from '../store';
+import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale } from 'chart.js';
+import { useStoreContext } from '../../store';
 
-let chart;
+Chart.register(LineController, LineElement, LinearScale, PointElement, CategoryScale);
+
+let chart: Chart;
 
 // Helper function to help limit the window to the last 10 minutes
-const tenMinLimit = (arr) => {
+const tenMinLimit = (arr: Array<any>) => {
   if (arr.length > 60) {
     return arr.slice(-60);
   }
@@ -14,7 +16,9 @@ const tenMinLimit = (arr) => {
 
 const CPULoadChart = () => {
   const canvasRef = useRef(null);
-  const { state: { loadData, timeStamps } } = useStoreContext();
+  const {
+    state: { loadData, timeStamps },
+  } = useStoreContext();
   const limitedLoadData = tenMinLimit(loadData);
   const limitedTimeStamps = tenMinLimit(timeStamps);
   useEffect(() => {
@@ -26,23 +30,23 @@ const CPULoadChart = () => {
       type: 'line',
       data: {
         labels: limitedTimeStamps,
-        datasets: [{
-          label: 'CPU Load',
-          data: limitedLoadData,
-          fill: false,
-          borderColor: 'rgba(0, 0, 0, 0.6)',
-        }],
+        datasets: [
+          {
+            label: 'CPU Load',
+            data: limitedLoadData,
+            fill: false,
+            borderColor: 'rgba(0, 0, 0, 0.6)',
+          },
+        ],
       },
       options: {
         scales: {
-          yAxes: [{
+          y: {
             type: 'linear',
             // y Axis always start at 0, but the end could push past 3 if necessary
-            ticks: {
-              min: 0,
-              suggestedMax: 3,
-            },
-          }],
+            min: 0,
+            suggestedMax: 3,
+          },
         },
         maintainAspectRatio: false,
         animation: false,
@@ -50,7 +54,7 @@ const CPULoadChart = () => {
     });
   });
   return (
-    <div id="cpu-chart">
+    <div id="cpu-chart" className="items-center px-5 py-6 h-2/4 shadow-sm rounded-md bg-white">
       <canvas ref={canvasRef} />
     </div>
   );

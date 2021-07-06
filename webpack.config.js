@@ -2,42 +2,38 @@ const path = require('path');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './src/index.js',
+  entry: './src/ui/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            // options: {
-            //   presets: ['@babel/preset-env', '@babel/preset-react'],
-            // },
-          },
-        ],
+        use: ['ts-loader'],
       },
       {
-        test: /\.s[ac]ss$/i,
+        enforce: 'pre',
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['babel-loader', 'source-map-loader'],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   devServer: {
     port: 8080,
     publicPath: '/dist/',
     contentBase: './public',
     historyApiFallback: true,
-    proxy: {
-      '/data': 'http://localhost:3000',
-    },
   },
 };

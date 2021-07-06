@@ -1,9 +1,12 @@
 import React from 'react';
-import { useStoreContext } from '../store';
-import { turnOffAlert } from '../actions/actionCreators';
+import { useStoreContext } from '../../store';
+import { turnOffAlert } from '../../actions/actionCreators';
 
 const PopUpAlert = () => {
-  const { state: { isOverloaded }, dispatch } = useStoreContext();
+  const {
+    state: { isOverloaded },
+    dispatch,
+  } = useStoreContext();
   return (
     <div id="alert">
       <p>Alert:</p>
