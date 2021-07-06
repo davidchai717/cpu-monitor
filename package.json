@@ -1,7 +1,7 @@
 {
   "name": "cpu-monitor",
   "version": "1.0.0",
-  "description": "",
+  "description": "CPU monitoring tool built on React and Electron",
   "main": "dist/server/index.js",
   "scripts": {
     "start": "npm run build:app && npm run dev:app",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/davidchai717/cpu-monitor.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "David Chai",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/davidchai717/cpu-monitor/issues"
