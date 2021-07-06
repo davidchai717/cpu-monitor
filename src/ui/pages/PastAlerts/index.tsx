@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStoreContext } from '../../store';
 import AlertBox from './components/AlertBox';
+import BasePage from '../../components/BasePage';
 
 const PastAlertContainer = () => {
   const {
@@ -12,11 +13,10 @@ const PastAlertContainer = () => {
     pastAlertComps.push(<AlertBox alert={pastAlerts[i]} key={`alert-${i}`} />);
   }
   return (
-    <div id="past-alert-container">
-      <h2>Past Alerts</h2>
+    <BasePage title="Past Alerts">
       {!pastAlerts.length ? <p>No alerts available yet.</p> : null}
       {pastAlertComps}
-    </div>
+    </BasePage>
   );
 };
 

@@ -3,17 +3,18 @@ import { useStoreContext } from '../../store';
 import CPULoadChart from './CPULoadChart';
 import PopUpAlert from './PopUpAlert';
 import StatusContainer from './StatusContainer';
+import BasePage from '../../components/BasePage';
 
 const Chart = () => {
   const {
     state: { showAlert },
   } = useStoreContext();
   return (
-    <div id="chart-container">
+    <BasePage title="Chart">
       <CPULoadChart />
       {showAlert ? <PopUpAlert /> : null}
       <StatusContainer />
-    </div>
+    </BasePage>
   );
 };
 

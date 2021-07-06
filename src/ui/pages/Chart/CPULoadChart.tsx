@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { Chart, ChartDatasetProperties, LineController, LineElement, PointElement, LinearScale, CategoryScale } from 'chart.js';
+import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale } from 'chart.js';
 import { useStoreContext } from '../../store';
 
 Chart.register(LineController, LineElement, LinearScale, PointElement, CategoryScale);
@@ -54,7 +54,7 @@ const CPULoadChart = () => {
     });
   });
   return (
-    <div id="cpu-chart">
+    <div id="cpu-chart" className="items-center px-5 py-6 h-2/4 shadow-sm rounded-md bg-white">
       <canvas ref={canvasRef} />
     </div>
   );
