@@ -10,8 +10,7 @@ const PastAlertContainer = () => {
 
   return (
     <BasePage title="Past Alerts">
-      {!pastAlerts.length ? <p>No alerts available yet.</p> : null}
-      {pastAlerts.map((alert, i) => <AlertBox alert={alert} key={`alert-${i}`} />)}
+      {pastAlerts.length ? pastAlerts.map((alert, i) => <AlertBox alert={alert} key={`alert-${i}`} />) : <p>No alerts available yet.</p> }
     </BasePage>
   );
 };
