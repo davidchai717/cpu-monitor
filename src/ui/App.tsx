@@ -1,14 +1,11 @@
 import React, { useReducer, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import Routes from './Routes';
 import { Store } from './store';
 import { mainReducer, initialState } from './reducers/mainReducer';
 import { insertNewLoad } from './actions/actionCreators';
 
 const { ipcRenderer } = window.require('electron');
-
-import Chart from './pages/Chart';
-import PastAlerts from './pages/PastAlerts';
-import About from './pages/About';
 
 import Navbar from './components/Navbar';
 
@@ -24,6 +21,7 @@ const App = () => {
     });
 
     return () => {
+      debugger;
       console.log('sent?');
       ipcRenderer.send('stopSendingCpuUsage');
     };
@@ -35,15 +33,7 @@ const App = () => {
         <Router>
           <Navbar />
           <Switch>
-            <Route exact path="/">
-              <Chart />
-            </Route>
-            <Route path="/past-alerts">
-              <PastAlerts />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
+            <Routes />
           </Switch>
         </Router>
       </div>

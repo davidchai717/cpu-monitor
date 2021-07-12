@@ -1,12 +1,12 @@
 import os from 'os';
 
 // Helper functions to help parse and format the time
-const _addZero = (num: number) => {
+const _addZero = (num: number): string => {
   if (num >= 10) return String(num);
   return `0${String(num)}`;
 };
 
-const _processTime = (time: Date) => {
+const _processTime = (time: Date): string => {
   const hour = _addZero(time.getHours());
   const minute = _addZero(time.getMinutes());
   const second = _addZero(time.getSeconds());

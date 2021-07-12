@@ -3,7 +3,7 @@ import { sendLoad } from './services/cpu';
 
 const eventStack: NodeJS.Timeout[] = [];
 
-function createWindow() {
+const createWindow = (): void => {
   const win = new BrowserWindow({
     width: 1024,
     height: 768,
@@ -21,7 +21,7 @@ function createWindow() {
   } else {
     win.loadFile('./public/index.html');
   }
-}
+};
 
 ipcMain.on('requestCpuUsage', (event) => {
   console.log('WebSockets connected');
