@@ -7,15 +7,10 @@ const PastAlertContainer = () => {
   const {
     state: { pastAlerts },
   } = useStoreContext();
-  // Renders all the previous alerts
-  const pastAlertComps = [];
-  for (let i = pastAlerts.length - 1; i >= 0; i -= 1) {
-    pastAlertComps.push(<AlertBox alert={pastAlerts[i]} key={`alert-${i}`} />);
-  }
+
   return (
     <BasePage title="Past Alerts">
-      {!pastAlerts.length ? <p>No alerts available yet.</p> : null}
-      {pastAlertComps}
+      {pastAlerts.length ? pastAlerts.map((alert, i) => <AlertBox alert={alert} key={`alert-${i}`} />) : <p>No alerts available yet.</p> }
     </BasePage>
   );
 };
